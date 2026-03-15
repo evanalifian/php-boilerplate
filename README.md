@@ -6,7 +6,8 @@ A starter template to build website using native PHP and MVC pattern implementat
 
 ```bash
 git clone https://github.com/evanalifian/php-boilerplate.git <optional-project-name>
-composer install
+composer update
+composer dump-autoload
 ```
 
 ## Tech Stacks
