@@ -2,33 +2,40 @@
 
 namespace App\PHPBoilerplate\Controller;
 
-use App\PHPBoilerplate\Config\Database;
 use App\PHPBoilerplate\Config\View;
-use App\PHPBoilerplate\Exception\ValidationException;
+use App\PHPBoilerplate\Config\Database;
+use App\PHPBoilerplate\Model\AuthModel;
 use App\PHPBoilerplate\Repository\UserRepository;
-use App\PHPBoilerplate\Service\UserService;
+use App\PHPBoilerplate\Service\AuthService;
+use App\PHPBoilerplate\Exception\ValidationException;
 
 class AuthController
 {
-  private UserService $userService;
+  private static AuthModel $authModel;
+  private static AuthService $authService;
 
   public function __construct()
   {
-    $dbConn = Database::connect();
-    $userRepository = new UserRepository($dbConn);
-    $this->userService = new UserService($userRepository);
+    $connDB = Database::connect();
+    $userRepository = new UserRepository($connDB);
+
+    self::$authModel = new AuthModel();
+    self::$authService = new AuthService($userRepository);
   }
 
-  public function loginPage(): void
+  public function page(): void
   {
     View::render("auth/login");
   }
 
-  public function login(): void
+  public function auth(): void
   {
     try {
-      $this->userService->login($_POST);
-      View::redirect("/");
+      self::$authModel->username = $_POST["username"];
+      self::$authModel->password = $_POST["password"];
+
+      self::$authService->auth(self::$authModel);
+      View::redirect("/account");
     } catch (ValidationException $e) {
       View::render("auth/login", [
         "error_message" => $e->getMessage()
@@ -36,25 +43,8 @@ class AuthController
     }
   }
 
-  public function signupPage(): void
+  public function logout(): void
   {
-    View::render("auth/signup");
-  }
-
-  public function signup(): void
-  {
-    try {
-      $this->userService->signup($_POST);
-      View::redirect("/login");
-    } catch (ValidationException $e) {
-      View::render("auth/signup", [
-        "error_message" => $e->getMessage()
-      ]);
-    }
-  }
-
-  public function logout(): void {
-    session_start();
     session_destroy();
     session_unset();
     View::redirect("/login");

@@ -3,22 +3,49 @@
 namespace App\PHPBoilerplate\Repository;
 
 use App\PHPBoilerplate\Model\UserModel;
+use App\PHPBoilerplate\Model\SignupModel;
 
-class UserRepository {
-  private \PDO $db_conn;
+class UserRepository
+{
+  private static \PDO $connDB;
 
-  public function __construct(\PDO $db_conn) {
-    $this->db_conn = $db_conn;
+  public function __construct(\PDO $connDB)
+  {
+    self::$connDB = $connDB;
   }
 
-  public function findByUsername(string $username): \PDOStatement {
-    $statement = $this->db_conn->prepare("SELECT * FROM users WHERE username = ?");
+  public function findByID(int $userID): \PDOStatement
+  {
+    $statement = self::$connDB->prepare("SELECT * FROM users WHERE id = ?");
+    $statement->execute([$userID]);
+    return $statement;
+  }
+
+  public function findByUsername(string $username): \PDOStatement
+  {
+    $statement = self::$connDB->prepare("SELECT * FROM users WHERE username = ?");
     $statement->execute([$username]);
     return $statement;
   }
 
-  public function save(UserModel $userModel): void {
-    $statement = $this->db_conn->prepare("INSERT INTO users (username, name, password) VALUES (?, ?, ?)");
-    $statement->execute([$userModel->username, $userModel->name, $userModel->password]);
+  public function save(SignupModel $signupModel): \PDOStatement
+  {
+    $statement = self::$connDB->prepare("INSERT INTO users (name, username, password) VALUES (?, ?, ?)");
+    $statement->execute([$signupModel->name, $signupModel->username, $signupModel->password]);
+    return $statement;
+  }
+
+  public function update(UserModel $userModel, int $userID): \PDOStatement
+  {
+    $statement = self::$connDB->prepare("UPDATE users SET name = ?, username = ? WHERE id = ?");
+    $statement->execute([$userModel->name, $userModel->username, $userID]);
+    return $statement;
+  }
+
+  public function delete(int $userID): \PDOStatement
+  {
+    $statement = self::$connDB->prepare("DELETE FROM users WHERE id = ?");
+    $statement->execute([$userID]);
+    return $statement;
   }
 }

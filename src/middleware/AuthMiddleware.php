@@ -10,8 +10,8 @@ class AuthMiddleware
   {
     session_start();
 
-    if (isset($_SESSION["username"])) {
-      View::redirect("/");
+    if (isset($_SESSION["auth"])) {
+      View::redirect("/account");
     }
   }
 
@@ -19,7 +19,7 @@ class AuthMiddleware
   {
     session_start();
 
-    if (!isset($_SESSION["username"])) {
+    if (!isset($_SESSION["auth"])) {
       View::redirect("/login");
     }
   }
