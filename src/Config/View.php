@@ -7,7 +7,7 @@ class View
   public static function render(string $src_path, array $data = []): void
   {
     require_once __DIR__ . "/../View/header.php";
-    require_once __DIR__ . "/../View/$src_path.php";
+    require_once __DIR__ . "/../View/$src_path/index.php";
     require_once __DIR__ . "/../View/footer.php";
   }
 

@@ -25,7 +25,7 @@ class AuthController
 
   public function page(): void
   {
-    View::render("auth/login");
+    View::render("login");
   }
 
   public function auth(): void
@@ -37,7 +37,7 @@ class AuthController
       self::$authService->auth(self::$authModel);
       View::redirect("/account");
     } catch (ValidationException $e) {
-      View::render("auth/login", [
+      View::render("login", [
         "error_message" => $e->getMessage()
       ]);
     }

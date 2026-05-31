@@ -3,9 +3,9 @@
     <div class="col-sm-4 d-flex flex-column align-items-center">
       <h3>Signup</h3>
       <?php if (isset($data["error_message"])): ?>
-        <div class="alert alert-danger" role="alert">
-          <?= $data["error_message"] ?>
-        </div>
+          <div class="alert alert-danger" role="alert">
+            <?= $data["error_message"] ?>
+          </div>
       <?php endif ?>
       <form action="/signup" method="POST" class="my-4 w-100">
         <div class="mb-3">

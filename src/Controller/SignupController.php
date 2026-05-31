@@ -25,7 +25,7 @@ class SignupController
 
   public function page(): void
   {
-    View::render("auth/signup");
+    View::render("signup");
   }
 
   public function save(): void
@@ -38,7 +38,7 @@ class SignupController
       self::$signupService->save(self::$signupModel);
       View::redirect("/login");
     } catch (ValidationException $e) {
-      View::render("auth/signup", [
+      View::render("signup", [
         "error_message" => $e->getMessage()
       ]);
     }
