@@ -25,7 +25,10 @@ class SignupController
 
   public function page(): void
   {
-    View::render("signup");
+    View::render("signup", [
+      "title" => "Sign Up - PHP Boilerplate",
+      "styles" => ["auth.css"]
+    ]);
   }
 
   public function save(): void
