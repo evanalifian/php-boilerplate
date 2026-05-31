@@ -27,7 +27,7 @@ class SignupController
   {
     View::render("signup", [
       "title" => "Sign Up - PHP Boilerplate",
-      "styles" => ["auth.css"]
+      "styles" => ["form.css"]
     ]);
   }
 

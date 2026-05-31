@@ -14,16 +14,15 @@
 
       <!-- Minimalist Login Card -->
       <div class="card border border-light-subtle rounded-4 bg-white p-4 p-sm-5 shadow-sm">
-        <form action="#" method="POST" autocomplete="off">
+        <form action="/login" method="POST" autocomplete="off">
 
           <!-- Email Input -->
           <div class="mb-4">
-            <label for="email" class="form-label text-secondary small fw-semibold text-uppercase tracking-wider">Email
-              Address</label>
+            <label for="username" class="form-label text-secondary small fw-semibold text-uppercase tracking-wider">Username</label>
             <div class="input-group border rounded-3 overflow-hidden">
-              <span class="input-group-text bg-light border-0 text-secondary px-3"><i class="bi bi-envelope"></i></span>
-              <input type="email" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="email"
-                placeholder="name@domain.com" required>
+              <span class="input-group-text bg-light border-0 text-secondary px-3"><i class="bi bi-person"></i></span>
+              <input type="text" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="username" name="username"
+                placeholder="johndoe">
             </div>
           </div>
 
@@ -36,8 +35,8 @@
             <div class="input-group border rounded-3 overflow-hidden">
               <span class="input-group-text bg-light border-0 text-secondary px-3"><i
                   class="bi bi-shield-lock"></i></span>
-              <input type="password" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="password"
-                placeholder="••••••••" required>
+              <input type="password" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="password" name="password"
+                placeholder="••••••••">
             </div>
           </div>
 

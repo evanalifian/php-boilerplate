@@ -27,7 +27,7 @@ class AuthController
   {
     View::render("login", [
       "title" => "Sign In - PHP Boilerplate",
-      "styles" => ["auth.css"]
+      "styles" => ["form.css"]
     ]);
   }
 

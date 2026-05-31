@@ -14,7 +14,7 @@
 
       <!-- Minimalist Sign Up Card -->
       <div class="card border border-light-subtle rounded-4 bg-white p-4 p-sm-5 shadow-sm">
-        <form action="#" method="POST" autocomplete="off">
+        <form action="/signup" method="POST" autocomplete="off">
 
           <!-- Full Name Input -->
           <div class="mb-4">
@@ -22,7 +22,7 @@
               Name</label>
             <div class="input-group border rounded-3 overflow-hidden">
               <span class="input-group-text bg-light border-0 text-secondary px-3"><i class="bi bi-person"></i></span>
-              <input type="text" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="name"
+              <input type="text" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="name" name="name"
                 placeholder="John Doe" required>
             </div>
           </div>
@@ -33,7 +33,7 @@
               class="form-label text-secondary small fw-semibold text-uppercase tracking-wider">Username</label>
             <div class="input-group border rounded-3 overflow-hidden">
               <span class="input-group-text bg-light border-0 text-secondary px-3"><i class="bi bi-at"></i></span>
-              <input type="text" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="username"
+              <input type="text" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="username" name="username"
                 placeholder="johndoe" required>
             </div>
           </div>
@@ -45,7 +45,7 @@
             <div class="input-group border rounded-3 overflow-hidden">
               <span class="input-group-text bg-light border-0 text-secondary px-3"><i
                   class="bi bi-shield-lock"></i></span>
-              <input type="password" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="password"
+              <input type="password" class="form-control bg-light border-0 py-3 px-1 fs-6 text-dark" id="password" name="password"
                 placeholder="••••••••" required>
             </div>
           </div>
