@@ -8,7 +8,7 @@ class Database
   {
     $db_host = getenv("DB_HOST") ?: "localhost";
     $db_port = getenv("DB_PORT") ?: "3306";
-    $db_database = getenv("DB_DATABASE") ?: "ceritawa";
+    $db_database = getenv("DB_DATABASE") ?: "php_boilerplate";
     $db_username = getenv("DB_USERNAME") ?: "root";
     $db_password = getenv("DB_PASSWORD") ?: "";
 
