@@ -1,13 +1,13 @@
 <?php
 
-namespace App\PHPBoilerplate\Controller;
+namespace App\Controller;
 
-use App\PHPBoilerplate\Config\Database;
-use App\PHPBoilerplate\Config\View;
-use App\PHPBoilerplate\Exception\ValidationException;
-use App\PHPBoilerplate\Model\UserModel;
-use App\PHPBoilerplate\Repository\UserRepository;
-use App\PHPBoilerplate\Service\UserService;
+use App\Config\Database;
+use App\Config\View;
+use App\Exception\ValidationException;
+use App\Model\UserModel;
+use App\Repository\UserRepository;
+use App\Service\UserService;
 
 class UserController
 {

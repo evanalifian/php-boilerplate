@@ -1,9 +1,9 @@
 <?php
 
-namespace App\PHPBoilerplate\Repository;
+namespace App\Repository;
 
-use App\PHPBoilerplate\Model\UserModel;
-use App\PHPBoilerplate\Model\SignupModel;
+use App\Model\UserModel;
+use App\Model\SignupModel;
 
 class UserRepository
 {

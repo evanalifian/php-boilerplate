@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PHPBoilerplate\Config;
+namespace App\Config;
 
 class View
 {

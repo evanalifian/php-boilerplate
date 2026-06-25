@@ -1,8 +1,8 @@
 <?php
 
-namespace App\PHPBoilerplate\Config;
+namespace App\Config;
 
-use App\PHPBoilerplate\Config\View;
+use App\Config\View;
 
 class Router
 {

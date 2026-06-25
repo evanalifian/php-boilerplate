@@ -1,10 +1,10 @@
 <?php
 
-namespace App\PHPBoilerplate\Service;
+namespace App\Service;
 
-use App\PHPBoilerplate\Model\SignupModel;
-use App\PHPBoilerplate\Repository\UserRepository;
-use App\PHPBoilerplate\Exception\ValidationException;
+use App\Model\SignupModel;
+use App\Repository\UserRepository;
+use App\Exception\ValidationException;
 
 class SignupService
 {

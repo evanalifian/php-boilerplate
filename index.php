@@ -1,11 +1,11 @@
 <?php
 
-use App\PHPBoilerplate\Config\Router;
-use App\PHPBoilerplate\Controller\AuthController;
-use App\PHPBoilerplate\Controller\HomeController;
-use App\PHPBoilerplate\Controller\SignupController;
-use App\PHPBoilerplate\Controller\UserController;
-use App\PHPBoilerplate\Middleware\AuthMiddleware;
+use App\Config\Router;
+use App\Controller\AuthController;
+use App\Controller\HomeController;
+use App\Controller\SignupController;
+use App\Controller\UserController;
+use App\Middleware\AuthMiddleware;
 
 require_once __DIR__ . "/vendor/autoload.php";
 

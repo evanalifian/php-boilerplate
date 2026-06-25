@@ -1,8 +1,8 @@
 <?php
 
-namespace App\PHPBoilerplate\Controller;
+namespace App\Controller;
 
-use App\PHPBoilerplate\Config\View;
+use App\Config\View;
 
 class HomeController
 {

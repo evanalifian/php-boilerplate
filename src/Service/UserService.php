@@ -1,10 +1,10 @@
 <?php
 
-namespace App\PHPBoilerplate\Service;
+namespace App\Service;
 
-use App\PHPBoilerplate\Exception\ValidationException;
-use App\PHPBoilerplate\Model\UserModel;
-use App\PHPBoilerplate\Repository\UserRepository;
+use App\Exception\ValidationException;
+use App\Model\UserModel;
+use App\Repository\UserRepository;
 
 class UserService
 {

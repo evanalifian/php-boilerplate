@@ -1,8 +1,8 @@
 <?php
 
-namespace App\PHPBoilerplate\Middleware;
+namespace App\Middleware;
 
-use App\PHPBoilerplate\Config\View;
+use App\Config\View;
 
 class AuthMiddleware
 {

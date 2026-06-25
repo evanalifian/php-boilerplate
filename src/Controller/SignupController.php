@@ -1,13 +1,13 @@
 <?php
 
-namespace App\PHPBoilerplate\Controller;
+namespace App\Controller;
 
-use App\PHPBoilerplate\Config\View;
-use App\PHPBoilerplate\Config\Database;
-use App\PHPBoilerplate\Model\SignupModel;
-use App\PHPBoilerplate\Repository\UserRepository;
-use App\PHPBoilerplate\Service\SignupService;
-use App\PHPBoilerplate\Exception\ValidationException;
+use App\Config\View;
+use App\Config\Database;
+use App\Model\SignupModel;
+use App\Repository\UserRepository;
+use App\Service\SignupService;
+use App\Exception\ValidationException;
 
 class SignupController
 {
