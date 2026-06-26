@@ -23,9 +23,60 @@ class UserController
     self::$userService = new UserService($userRepository);
   }
 
+  public function authPage(): void
+  {
+    View::render("login", [
+      "title" => "Sign In - PHP Boilerplate",
+      "styles" => ["form.css"]
+    ]);
+  }
+
+  public function auth(): void
+  {
+    try {
+      self::$userModel->username = $_POST["username"];
+      self::$userModel->password = $_POST["password"];
+
+      self::$userService->auth(self::$userModel);
+      View::redirect("/account");
+    } catch (ValidationException $e) {
+      View::render("login", [
+        "title" => "Sign In - PHP Boilerplate",
+        "styles" => ["form.css"],
+        "error_message" => $e->getMessage()
+      ]);
+    }
+  }
+
+  public function signupPage(): void
+  {
+    View::render("signup", [
+      "title" => "Sign Up - PHP Boilerplate",
+      "styles" => ["form.css"]
+    ]);
+  }
+
+  public function save(): void
+  {
+    try {
+      self::$userModel->name = $_POST["name"];
+      self::$userModel->username = $_POST["username"];
+      self::$userModel->password = $_POST["password"];
+
+      self::$userService->save(self::$userModel);
+      View::redirect("/login");
+    } catch (ValidationException $e) {
+      View::render("signup", [
+        "title" => "Sign Up - PHP Boilerplate",
+        "styles" => ["form.css"],
+        "error_message" => $e->getMessage()
+      ]);
+    }
+  }
+
   public function page(): void
   {
-    View::render("account", [
+    View::render("home", [
       "title" => "Profile Settings - PHP Boilerplate",
       "styles" => ["form.css"],
       "user" => self::$userService->findByID($_SESSION["auth"]["id"])
@@ -62,5 +113,12 @@ class UserController
         "error_message" => $e->getMessage()
       ]);
     }
+  }
+
+  public function logout(): void
+  {
+    session_destroy();
+    session_unset();
+    View::redirect("/login");
   }
 }

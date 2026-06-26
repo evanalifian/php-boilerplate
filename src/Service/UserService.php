@@ -15,6 +15,51 @@ class UserService
     self::$userRepository = $userRepository;
   }
 
+  public function save(UserModel $model): void
+  {
+    self::signupValidation($model);
+
+    $result = self::$userRepository->findByUsername($model->username)->fetch();
+
+    if ($result) {
+      throw new ValidationException("User already exist");
+    }
+
+    $model->password = password_hash($model->password, PASSWORD_BCRYPT);
+    self::$userRepository->save($model);
+  }
+
+  private static function signupValidation(UserModel $model): void
+  {
+    if (empty($model->name) || empty($model->username) || empty($model->password)) {
+      throw new ValidationException("Name, Username, and Password can not be empty");
+    }
+  }
+
+  public function auth(UserModel $model): void
+  {
+    self::authValidation($model);
+
+    $result = self::$userRepository->findByUsername($model->username)->fetch();
+
+    if (!$result) {
+      throw new ValidationException("Username does not exist");
+    }
+
+    if (!password_verify($model->password, $result["password"])) {
+      throw new ValidationException("Password incorrect");
+    }
+
+    $_SESSION["auth"] = $result;
+  }
+
+  private static function authValidation(UserModel $model): void
+  {
+    if (empty($model->username) || empty($model->password)) {
+      throw new ValidationException("Username and Password can not be empty");
+    }
+  }
+
   public function update(UserModel $userModel, int $userID): void
   {
     $model = $userModel;
@@ -35,12 +80,13 @@ class UserService
 
   private static function updateValidation(UserModel $userModel): void
   {
-    if (strlen($userModel->name) === 0 || strlen($userModel->username) === 0) {
+    if (empty($userModel->name) || empty($userModel->username)) {
       throw new ValidationException("Name and Username can not be empty");
     }
   }
 
-  public function findByID(int $id_user): array {
+  public function findByID(int $id_user): array
+  {
     return self::$userRepository->findByID($id_user)->fetch();
   }
 

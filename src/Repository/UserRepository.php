@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Model\UserModel;
-use App\Model\SignupModel;
 
 class UserRepository
 {
@@ -28,17 +27,17 @@ class UserRepository
     return $statement;
   }
 
-  public function save(SignupModel $signupModel): \PDOStatement
+  public function save(UserModel $model): \PDOStatement
   {
     $statement = self::$connDB->prepare("INSERT INTO users (name, username, password) VALUES (?, ?, ?)");
-    $statement->execute([$signupModel->name, $signupModel->username, $signupModel->password]);
+    $statement->execute([$model->name, $model->username, $model->password]);
     return $statement;
   }
 
-  public function update(UserModel $userModel, int $userID): \PDOStatement
+  public function update(UserModel $model, int $userID): \PDOStatement
   {
     $statement = self::$connDB->prepare("UPDATE users SET name = ?, username = ? WHERE id = ?");
-    $statement->execute([$userModel->name, $userModel->username, $userID]);
+    $statement->execute([$model->name, $model->username, $userID]);
     return $statement;
   }
 
