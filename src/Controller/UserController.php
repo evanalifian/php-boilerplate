@@ -34,8 +34,8 @@ class UserController
   public function auth(): void
   {
     try {
-      self::$userModel->username = $_POST["username"];
-      self::$userModel->password = $_POST["password"];
+      self::$userModel->username = htmlspecialchars(trim($_POST["username"]));
+      self::$userModel->password = htmlspecialchars(trim($_POST["password"]));
 
       self::$userService->auth(self::$userModel);
       View::redirect("/account");
@@ -59,9 +59,9 @@ class UserController
   public function save(): void
   {
     try {
-      self::$userModel->name = $_POST["name"];
-      self::$userModel->username = $_POST["username"];
-      self::$userModel->password = $_POST["password"];
+      self::$userModel->name = htmlspecialchars(trim($_POST["name"]));
+      self::$userModel->username = htmlspecialchars(trim($_POST["username"]));
+      self::$userModel->password = htmlspecialchars(trim($_POST["password"]));
 
       self::$userService->save(self::$userModel);
       View::redirect("/login");
@@ -74,20 +74,20 @@ class UserController
     }
   }
 
-  public function page(): void
+  public function homePage(): void
   {
     View::render("home", [
       "title" => "Profile Settings - PHP Boilerplate",
       "styles" => ["form.css"],
-      "user" => self::$userService->findByID($_SESSION["auth"]["id"])
+      "user" => self::$userService->getUserByIdentity($_SESSION["auth"]["id"])
     ]);
   }
 
   public function update(): void
   {
     try {
-      self::$userModel->name = $_POST["name"];
-      self::$userModel->username = $_POST["username"];
+      self::$userModel->name = htmlspecialchars(trim($_POST["name"]));
+      self::$userModel->username = htmlspecialchars(trim($_POST["username"]));
 
       self::$userService->update(self::$userModel, $_SESSION['auth']["id"]);
       View::redirect("/account");
@@ -95,7 +95,7 @@ class UserController
       View::render("account", [
         "title" => "Profile Settings - PHP Boilerplate",
         "styles" => ["form.css"],
-        "user" => self::$userService->findByID($_SESSION["auth"]["id"]),
+        "user" => self::$userService->getUserByIdentity($_SESSION["auth"]["id"]),
         "error_message" => $e->getMessage()
       ]);
     }

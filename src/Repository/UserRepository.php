@@ -13,18 +13,11 @@ class UserRepository
     self::$connDB = $connDB;
   }
 
-  public function findByID(int $userID): \PDOStatement
+  public function getUserByIdentity(string|int $identity): array
   {
-    $statement = self::$connDB->prepare("SELECT * FROM users WHERE id = ?");
-    $statement->execute([$userID]);
-    return $statement;
-  }
-
-  public function findByUsername(string $username): \PDOStatement
-  {
-    $statement = self::$connDB->prepare("SELECT * FROM users WHERE username = ?");
-    $statement->execute([$username]);
-    return $statement;
+    $statement = self::$connDB->prepare("SELECT * FROM users WHERE id = ? OR username = ?");
+    $statement->execute([$identity, $identity]);
+    return $statement->fetch();
   }
 
   public function save(UserModel $model): \PDOStatement

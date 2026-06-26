@@ -5,8 +5,8 @@
     </a>
 
     <div class="ms-auto d-flex align-items-center gap-3">
-      <span class="text-secondary small d-none d-sm-inline">Hi, <strong class="text-dark fw-medium">Evan
-          Alifian</strong></span>
+      <span class="text-secondary small d-none d-sm-inline">Hi, <strong
+          class="text-dark fw-medium"><?= $data["user"]["name"] ?></strong></span>
       <a href="/logout" class="btn btn-sm btn-outline-danger px-3 rounded-3 fw-medium transition">
         Log Out
       </a>
@@ -37,12 +37,12 @@
 
               <div class="mb-3">
                 <label class="text-muted small fw-normal d-block mb-0">Full Name</label>
-                <span class="text-dark fw-medium">Evan Alifian</span>
+                <span class="text-dark fw-medium"><?= $data["user"]["name"] ?></span>
               </div>
 
               <div class="mb-3">
-                <label class="text-muted small fw-normal d-block mb-0">Email Address</label>
-                <span class="text-dark fw-medium">evan@example.com</span>
+                <label class="text-muted small fw-normal d-block mb-0">Username</label>
+                <span class="text-dark fw-medium"><?= $data["user"]["username"] ?></span>
               </div>
             </div>
           </div>

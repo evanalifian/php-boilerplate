@@ -14,7 +14,7 @@ $home = new HomeController();
 $user = new UserController();
 
 Router::add("/", "GET", fn() => $home->index(), fn() => AuthMiddleware::isAuth());
-Router::add("/account", "GET", fn() => $user->page(), fn() => AuthMiddleware::isNotAuth());
+Router::add("/account", "GET", fn() => $user->homePage(), fn() => AuthMiddleware::isNotAuth());
 Router::add("/account/update", "POST", fn() => $user->update(), fn() => AuthMiddleware::isNotAuth());
 Router::add("/account/delete", "GET", fn() => $user->delete(), fn() => AuthMiddleware::isNotAuth());
 

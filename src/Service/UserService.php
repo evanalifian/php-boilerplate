@@ -15,11 +15,16 @@ class UserService
     self::$userRepository = $userRepository;
   }
 
+  public function getUserByIdentity(string|int $identity): array
+  {
+    return self::$userRepository->getUserByIdentity($identity);
+  }
+
   public function save(UserModel $model): void
   {
-    self::signupValidation($model);
+    self::saveValidation($model);
 
-    $result = self::$userRepository->findByUsername($model->username)->fetch();
+    $result = $this->getUserByIdentity($model->username);
 
     if ($result) {
       throw new ValidationException("User already exist");
@@ -29,7 +34,7 @@ class UserService
     self::$userRepository->save($model);
   }
 
-  private static function signupValidation(UserModel $model): void
+  private static function saveValidation(UserModel $model): void
   {
     if (empty($model->name) || empty($model->username) || empty($model->password)) {
       throw new ValidationException("Name, Username, and Password can not be empty");
@@ -40,7 +45,7 @@ class UserService
   {
     self::authValidation($model);
 
-    $result = self::$userRepository->findByUsername($model->username)->fetch();
+    $result = $this->getUserByIdentity($model->username);
 
     if (!$result) {
       throw new ValidationException("Username does not exist");
@@ -66,7 +71,7 @@ class UserService
 
     self::updateValidation($model);
 
-    $result = self::$userRepository->findByID($userID)->fetch();
+    $result = $this->getUserByIdentity($userID);
 
     if (!$result) {
       throw new ValidationException("User does not match");
@@ -83,11 +88,6 @@ class UserService
     if (empty($userModel->name) || empty($userModel->username)) {
       throw new ValidationException("Name and Username can not be empty");
     }
-  }
-
-  public function findByID(int $id_user): array
-  {
-    return self::$userRepository->findByID($id_user)->fetch();
   }
 
   public function delete(int $userID): void
