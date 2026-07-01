@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Config\Database;
 use App\Exception\ValidationException;
-use App\Helpers\Helpers;
 use App\Model\UserModel;
 use App\Repository\UserRepository;
 
@@ -24,7 +23,7 @@ class UserService
 
   public function save(UserModel $model): array
   {
-    Helpers::saveValidation($model);
+    self::saveValidation($model);
 
     try {
       Database::beginTransaction();
@@ -44,13 +43,21 @@ class UserService
       return $result;
     } catch (\Exception $e) {
       Database::rollback();
-      throw new ValidationException($e->getMessage());
+      throw $e;
+    }
+
+  }
+
+  private static function saveValidation(UserModel $model): void
+  {
+    if (empty($model->name) || empty($model->username) || empty($model->password)) {
+      throw new ValidationException("Name, Username, and Password can not be empty");
     }
   }
 
   public function auth(UserModel $model): array
   {
-    Helpers::authValidation($model);
+    self::authValidation($model);
 
     $result = $this->getUserByIdentity($model->username);
 
@@ -65,9 +72,16 @@ class UserService
     return $result;
   }
 
+  private static function authValidation(UserModel $model): void
+  {
+    if (empty($model->username) || empty($model->password)) {
+      throw new ValidationException("Username and Password can not be empty");
+    }
+  }
+
   public function update(UserModel $model, int $userID): void
   {
-    Helpers::updateValidation($model);
+    self::updateValidation($model);
 
     try {
       Database::beginTransaction();
@@ -83,21 +97,22 @@ class UserService
       Database::commit();
     } catch (\Exception $e) {
       Database::rollback();
-      throw new ValidationException($e->getMessage());
+      throw $e;
+    }
+
+  }
+
+  private static function updateValidation(UserModel $model): void
+  {
+    if (empty($model->name) || empty($model->username)) {
+      throw new ValidationException("Name and Username can not be empty");
     }
   }
 
   public function delete(int $userID): void
   {
-    try {
-      Database::beginTransaction();
-
-      self::$userRepository->delete($userID);
-
-      Database::commit();
-    } catch (\Exception $e) {
-      Database::rollback();
-      throw new ValidationException($e->getMessage());
-    }
+    self::$userRepository->delete($userID);
+    session_destroy();
+    session_unset();
   }
 }

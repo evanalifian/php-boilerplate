@@ -11,7 +11,6 @@ use App\Repository\SessionRepository;
 use App\Repository\UserRepository;
 use App\Service\SessionService;
 use App\Service\UserService;
-use App\Utils\Utils;
 
 class UserController
 {
@@ -32,36 +31,15 @@ class UserController
     self::$sessionService = new SessionService($sessionRepository, $userRepository);
   }
 
-  public function signupPage(): void
+  public function authPage(): void
   {
-    View::render("signup", ["title" => "Create Account"]);
+    View::render("login", [
+      "title" => "Sign In - PHP Boilerplate",
+      "styles" => ["form.css"]
+    ]);
   }
 
-  public function save(): void
-  {
-    try {
-      self::$userModel->username = htmlspecialchars(trim($_POST["username"]));
-      self::$userModel->email = htmlspecialchars(trim($_POST["email"]));
-      self::$userModel->password = htmlspecialchars(trim($_POST["password"]));
-
-      self::$userService->save(self::$userModel);
-      View::redirect("/login");
-    } catch (ValidationException $e) {
-      View::render("signup", [
-        "title" => "Create Account",
-        "scripts" => ["errorToast.js"],
-        "components" => ["errorToast.php"],
-        "error_message" => $e->getMessage()
-      ]);
-    }
-  }
-
-  public function loginPage(): void
-  {
-    View::render("login", ["title" => "Sign In - PHP Boilerplate"]);
-  }
-
-  public function login(): void
+  public function auth(): void
   {
     try {
       self::$userModel->username = htmlspecialchars(trim($_POST["username"]));
@@ -69,34 +47,49 @@ class UserController
 
       $user = self::$userService->auth(self::$userModel);
       self::$sessionService->save($user["id"]);
-      View::redirect("/home");
+      View::redirect("/account");
     } catch (ValidationException $e) {
       View::render("login", [
         "title" => "Sign In - PHP Boilerplate",
-        "scripts" => ["errorToast.js"],
-        "components" => ["errorToast.php"],
+        "styles" => ["form.css"],
         "error_message" => $e->getMessage()
       ]);
     }
   }
 
-  public function profilePage(): void
+  public function signupPage(): void
   {
-    $user = self::$sessionService->current();
-    $user["created_at"] = Utils::formatJoinTime($user["created_at"]);
-
-    View::app("profile", [
-      "title" => "Profile",
-      "user" => $user
+    View::render("signup", [
+      "title" => "Sign Up - PHP Boilerplate",
+      "styles" => ["form.css"]
     ]);
   }
 
-  public function settingPage(): void
+  public function save(): void
+  {
+    try {
+      self::$userModel->name = htmlspecialchars(trim($_POST["name"]));
+      self::$userModel->username = htmlspecialchars(trim($_POST["username"]));
+      self::$userModel->password = htmlspecialchars(trim($_POST["password"]));
+
+      self::$userService->save(self::$userModel);
+      View::redirect("/login");
+    } catch (ValidationException $e) {
+      View::render("signup", [
+        "title" => "Sign Up - PHP Boilerplate",
+        "styles" => ["form.css"],
+        "error_message" => $e->getMessage()
+      ]);
+    }
+  }
+
+  public function homePage(): void
   {
     $user = self::$sessionService->current();
 
-    View::app("profile-settings", [
-      "title" => "Profile Settings",
+    View::render("home", [
+      "title" => "Profile Settings - PHP Boilerplate",
+      "styles" => ["form.css"],
       "user" => $user
     ]);
   }
@@ -106,18 +99,16 @@ class UserController
     $user = self::$sessionService->current();
 
     try {
+      self::$userModel->name = htmlspecialchars(trim($_POST["name"]));
       self::$userModel->username = htmlspecialchars(trim($_POST["username"]));
-      self::$userModel->display_name = htmlspecialchars(trim($_POST["display_name"]));
-      self::$userModel->bio = htmlspecialchars(trim($_POST["bio"]));
 
       self::$userService->update(self::$userModel, $user["id"]);
-      View::redirect("/profile");
+      View::redirect("/account");
     } catch (ValidationException $e) {
-      View::app("update-profile", [
-        "title" => "Update Profile",
+      View::render("account", [
+        "title" => "Profile Settings - PHP Boilerplate",
+        "styles" => ["form.css"],
         "user" => $user,
-        "components" => ["errorToast.php"],
-        "scripts" => ["errorToast.js"],
         "error_message" => $e->getMessage()
       ]);
     }

@@ -1,6 +1,6 @@
 {
-    "name": "cnsl-lg/cnsl-post",
-    "description": "A microblog built from PHP",
+    "name": "cnsl-lg/php-boilerplate",
+    "description": "A starter template to build website using native PHP.",
     "type": "project",
     "autoload": {
         "psr-4": {
