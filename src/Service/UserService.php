@@ -89,8 +89,15 @@ class UserService
 
   public function delete(int $userID): void
   {
-    self::$userRepository->delete($userID);
-    session_destroy();
-    session_unset();
+    try {
+      Database::beginTransaction();
+
+      self::$userRepository->delete($userID);
+
+      Database::commit();
+    } catch (\Exception $e) {
+      Database::rollback();
+      throw new ValidationException($e->getMessage());
+    }
   }
 }

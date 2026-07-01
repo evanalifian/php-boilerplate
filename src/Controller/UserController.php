@@ -91,12 +91,12 @@ class UserController
     ]);
   }
 
-  public function updatePage(): void
+  public function settingPage(): void
   {
     $user = self::$sessionService->current();
 
-    View::app("update-profile", [
-      "title" => "Update Profile",
+    View::app("profile-settings", [
+      "title" => "Profile Settings",
       "user" => $user
     ]);
   }

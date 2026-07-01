@@ -62,8 +62,12 @@ class UserRepository
 
   public function delete(int $userID): \PDOStatement
   {
-    $statement = self::$connDB->prepare("DELETE FROM users WHERE id = ?");
-    $statement->execute([$userID]);
-    return $statement;
+    try {
+      $statement = self::$connDB->prepare("DELETE FROM users WHERE id = ?");
+      $statement->execute([$userID]);
+      return $statement;
+    } catch (\Exception $e) {
+      throw new ValidationException($e->getMessage());
+    }
   }
 }
