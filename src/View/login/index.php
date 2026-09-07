@@ -1,39 +1,63 @@
-<main class="my-auto py-5">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-10 col-sm-8 col-md-6 col-lg-4">
-        <div class="bg-white border rounded-4 p-4 p-sm-5 shadow-sm">
-          <div class="text-center mb-4">
-            <h2 class="fw-extrabold text-dark tracking-tight mb-1">Welcome Back</h2>
-            <p class="text-secondary small">Enter your credentials to access your account</p>
-          </div>
+<main class="my-auto py-12">
+  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-center">
+      <div class="w-full max-w-md">
 
-          <form action="/login" method="POST">
-            <div class="mb-3">
-              <label for="username" class="form-label small fw-medium text-secondary">Username</label>
-              <input type="text"
-                class="form-control rounded-3 py-2 text-dark bg-light border-0 shadow-none focus-ring focus-ring-dark"
-                id="username" name="username" placeholder="johndoe">
-            </div>
+        <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
 
-            <div class="mb-4">
-              <label for="password" class="form-label small fw-medium text-secondary mb-1">Password</label>
-              <input type="password"
-                class="form-control rounded-3 py-2 text-dark bg-light border-0 shadow-none focus-ring focus-ring-dark"
-                id="password" name="password" placeholder="••••••••">
-            </div>
+          <div class="mb-6 text-center">
+            <h2 class="mb-1 text-2xl font-extrabold tracking-tight text-gray-900">
+              Welcome Back
+            </h2>
 
-            <button type="submit" class="btn btn-dark w-100 py-2.5 rounded-3 fw-medium shadow-sm mb-3">
-              Log In
-            </button>
-          </form>
-
-          <div class="text-center mt-4 pt-2 border-top">
-            <p class="small text-secondary mb-0">
-              Don't have an account? <a href="/signup" class="link-dark fw-medium text-decoration-none">Sign up</a>
+            <p class="text-sm text-gray-500">
+              Enter your credentials to access your account
             </p>
           </div>
+
+
+          <form action="/login" method="POST">
+
+            <div class="mb-4">
+              <label for="username" class="mb-1 block text-sm font-medium text-gray-500">
+                Username
+              </label>
+
+              <input type="text" id="username" name="username" placeholder="johndoe"
+                class="w-full rounded-lg border-0 bg-gray-100 px-3 py-2.5 text-gray-900 outline-none transition placeholder:text-gray-400 focus:ring-2 focus:ring-gray-900">
+            </div>
+
+
+            <div class="mb-6">
+              <label for="password" class="mb-1 block text-sm font-medium text-gray-500">
+                Password
+              </label>
+
+              <input type="password" id="password" name="password" placeholder="••••••••"
+                class="w-full rounded-lg border-0 bg-gray-100 px-3 py-2.5 text-gray-900 outline-none transition placeholder:text-gray-400 focus:ring-2 focus:ring-gray-900">
+            </div>
+
+
+            <button type="submit"
+              class="mb-3 w-full rounded-lg bg-gray-900 py-2.5 font-medium text-white shadow-sm transition hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+              Log In
+            </button>
+
+          </form>
+
+
+          <div class="mt-6 border-t border-gray-200 pt-4 text-center">
+            <p class="text-sm text-gray-500">
+              Don't have an account?
+
+              <a href="/signup" class="font-medium text-gray-900 no-underline hover:underline">
+                Sign up
+              </a>
+            </p>
+          </div>
+
         </div>
+
       </div>
     </div>
   </div>

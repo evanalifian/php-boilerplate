@@ -5,7 +5,7 @@ use App\Controller\HomeController;
 use App\Controller\UserController;
 use App\Middleware\AuthMiddleware;
 
-require_once __DIR__ . "/vendor/autoload.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();

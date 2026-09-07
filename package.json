@@ -1,0 +1,28 @@
+{
+  "name": "php-boilerplate",
+  "version": "1.0.0",
+  "description": "A starter template to build website using native PHP and MVC pattern implementation.",
+  "homepage": "https://github.com/evanalifian/php-boilerplate#readme",
+  "bugs": {
+    "url": "https://github.com/evanalifian/php-boilerplate/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanalifian/php-boilerplate.git"
+  },
+  "license": "ISC",
+  "author": "Evan Rafa Radya Alifian",
+  "scripts": {
+    "dev": "concurrently \"php -S localhost:8000 -t public\" \"npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch\""
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "allowScripts": {
+    "tailwindcss@4.3.3": true
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}

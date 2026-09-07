@@ -1,53 +1,102 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-3">
-  <div class="container">
-    <a class="navbar-brand fw-bold tracking-tight text-dark fs-4" href="#">
-      php<span class="text-secondary fw-normal">.boilerplate</span>
+<nav class="sticky top-0 z-50 border-b border-gray-200 bg-white py-3">
+  <div class="mx-auto flex max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+
+    <a href="#" class="text-2xl font-bold tracking-tight text-gray-900">
+      php<span class="font-normal text-gray-500">.boilerplate</span>
     </a>
 
-    <div class="ms-auto d-flex align-items-center gap-3">
-      <span class="text-secondary small d-none d-sm-inline">Hi, <strong
-          class="text-dark fw-medium"><?= $data["user"]["name"] ?></strong></span>
-      <a href="/logout" class="btn btn-sm btn-outline-danger px-3 rounded-3 fw-medium transition">
+
+    <div class="ml-auto flex items-center gap-3">
+
+      <span class="hidden text-sm text-gray-500 sm:inline">
+        Hi,
+        <strong class="font-medium text-gray-900">
+          <?= $data["user"]["name"] ?>
+        </strong>
+      </span>
+
+      <a href="/logout"
+        class="rounded-lg border border-red-300 px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
         Log Out
       </a>
+
     </div>
+
   </div>
 </nav>
 
-<main class="my-auto py-5">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-10 col-lg-6">
-        <div class="bg-white border rounded-4 p-4 p-sm-5 shadow-sm mb-4">
-          <div class="text-center text-sm-start">
-            <h1 class="h2 fw-extrabold text-dark tracking-tight mb-2">
+
+<main class="my-auto py-12">
+
+  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <div class="flex justify-center">
+
+      <div class="w-full max-w-3xl">
+
+
+        <!-- Welcome Card -->
+        <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+
+          <div class="text-center sm:text-left">
+
+            <h1 class="mb-2 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
               Welcome to your Dashboard
             </h1>
-            <p class="text-secondary mb-0">
+
+            <p class="text-gray-500">
               Your boilerplate database connection is active and session is
               securely managed.
             </p>
+
           </div>
+
         </div>
 
-        <div class="row g-4">
-          <div class="col-md-12">
-            <div class="bg-white border rounded-4 p-4 shadow-sm h-100">
-              <h2 class="h5 fw-bold text-dark mb-3">Account Profile</h2>
 
-              <div class="mb-3">
-                <label class="text-muted small fw-normal d-block mb-0">Full Name</label>
-                <span class="text-dark fw-medium"><?= $data["user"]["name"] ?></span>
-              </div>
+        <!-- Account Profile -->
+        <div class="grid grid-cols-1 gap-6">
 
-              <div class="mb-3">
-                <label class="text-muted small fw-normal d-block mb-0">Username</label>
-                <span class="text-dark fw-medium"><?= $data["user"]["username"] ?></span>
-              </div>
+          <div class="h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+
+            <h2 class="mb-5 text-lg font-bold text-gray-900">
+              Account Profile
+            </h2>
+
+
+            <div class="mb-4">
+
+              <span class="mb-1 block text-sm font-normal text-gray-500">
+                Full Name
+              </span>
+
+              <span class="font-medium text-gray-900">
+                <?= $data["user"]["name"] ?>
+              </span>
+
             </div>
+
+
+            <div>
+
+              <span class="mb-1 block text-sm font-normal text-gray-500">
+                Username
+              </span>
+
+              <span class="font-medium text-gray-900">
+                <?= $data["user"]["username"] ?>
+              </span>
+
+            </div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </main>
